@@ -37,3 +37,19 @@ class MazeGenerator:
                 if not self.grid[neighbor_y][neighbor_x].visited:
                     neighbors.append((neighbor_x, neighbor_y))     
         return neighbors
+
+    def generate(self, start_x: int = 0, start_y: int = 0) -> None:
+        start_cell: Cell = self.grid[start_y][start_x]
+        start_cell.visited = True
+        stack: list[Cell] = [start_cell]
+
+        while stack:
+            current_cell: Cell = stack[-1]
+            valid_neighbors: list[tuple[int, int]] = self._get_valid_neighbors(
+                current_cell.x, current_cell.y
+            )
+
+        if valid_neighbors:
+            chosen_coords: tuple[int, int] = random.choice(valid_neighbors)
+            next_x: int = chosen_coords[0]
+            next_y: int = chosen_coords[1]
