@@ -5,3 +5,6 @@ venv
 #Bytecode
 __pycache__/
 .mypy_cache/
+
+# Maze Analyzer
+maze_analyzer.py
