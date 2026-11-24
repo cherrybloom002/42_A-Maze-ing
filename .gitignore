@@ -8,3 +8,6 @@ __pycache__/
 
 # Maze Analyzer
 maze_analyzer.py
+
+# Output File
+output.txt
