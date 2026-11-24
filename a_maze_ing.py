@@ -54,7 +54,7 @@ def save_output(filename: str, lines: list[str]) -> None:
             for line in lines:
                 f.write(line + "\n")
     except OSError as e:
-        print(f"Error: cannot write {filename}: ")
+        print(f"Error: cannot write {filename}: {e}")
 
 
 def build_output_lines(

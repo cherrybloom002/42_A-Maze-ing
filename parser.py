@@ -33,15 +33,19 @@ for k in mandatory_keys:
     else:
         raise ValueError(f"Missing mandatory parameter: {k}")
 
+
 try:
     couples["WIDTH"] = int(couples["WIDTH"])
     couples["HEIGHT"] = int(couples["HEIGHT"])
 
-    if couples["PERFECT"].lower() in ("true", "false"):  
-    	perfect = (perfect_str == "true")
-    else:
-    	raise ValueError("PERFECT must be True or False")
+    perfect_str: str = couples["PERFECT"].strip().lower()
+    if couples["PERFECT"].lower() in ("true", "false"):
+        perfect = (perfect_str == "true")
 
+    else:
+        raise ValueError("PERFECT must be True or False")
+
+    output_file: str = couples["OUTPUT_FILE"].strip().lower()
     if not output_file:
         raise ValueError("OUTPUT_FILE cannot be empty")
 
@@ -59,4 +63,4 @@ except ValueError as e:
     print(f"Error: {e}")
     sys.exit(1)
 
-print(couples)
+# print(couples)
