@@ -1,1 +1,1 @@
-This project has been created as part of the 42 curriculum by caguiari, ahodor
+This project has been created as part of the 42 curriculum by caguiari and ahodor
