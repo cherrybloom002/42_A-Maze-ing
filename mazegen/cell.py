@@ -18,19 +18,31 @@ class Cell:
             Direction.WEST: True
         }
         self.visited: bool = False
-        self.is_entry = is_entry
-        self.is_exit = is_exit
+        self.is_entry: bool = is_entry
+        self.is_exit: bool = is_exit
 
-    def _remove_wall(self, current_cell: Cell, neighbor_cell: Cell) -> None:
-        if neighbor_cell.x > current_cell.x: # Il vicino e' piu' a destra (Est)
-            current_cell.walls[Direction.EAST] = False
+    def remove_wall(self, neighbor_cell: "Cell") -> None:
+        if neighbor_cell.x > self.x: # Il vicino e' piu' a destra (Est)
+            self.walls[Direction.EAST] = False
             neighbor_cell.walls[Direction.WEST] = False
-        elif neighbor_cell.x < current_cell.x: # Il vicino e' piu' a sinistra (Ovest)
-            current_cell.walls[Direction.WEST] = False
+        elif neighbor_cell.x < self.x: # Il vicino e' piu' a sinistra (Ovest)
+            self.walls[Direction.WEST] = False
             neighbor_cell.walls[Direction.EAST] = False
-        elif neighbor_cell.y > current_cell.y: # Il vicino e' piu' in basso (Sud)
-            current_cell.walls[Direction.SOUTH] = False
+        elif neighbor_cell.y > self.y: # Il vicino e' piu' in basso (Sud)
+            self.walls[Direction.SOUTH] = False
             neighbor_cell.walls[Direction.NORTH] = False
-        elif neighbor_cell.y < current_cell.y: # Il vicino e' piu' in alt (Nord)
-            current_cell.walls[Direction.NORTH] = False
+        elif neighbor_cell.y < self.y: # Il vicino e' piu' in alt (Nord)
+            self.walls[Direction.NORTH] = False
             neighbor_cell.walls[Direction.SOUTH] = False
+
+    def to_hex(self) -> str:
+        value: int = 0
+        if self.walls[Direction.NORTH]:
+            value += 1
+        if self.walls[Direction.EAST]:
+            value += 2
+        if self.walls[Direction.SOUTH]:
+            value += 4
+        if self.walls[Direction.WEST]:
+            value += 8
+        return f"{value:X}"
